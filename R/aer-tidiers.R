@@ -94,7 +94,19 @@ tidy.ivreg <- function(x,
 #' @seealso [augment()], [AER::ivreg()]
 #' @family ivreg tidiers
 augment.ivreg <- function(x, data = model.frame(x), newdata = NULL, ...) {
-  augment_columns(x, data, newdata)
+  
+  # no standard errors for predictions available
+  
+  df <- augment_newdata(x, data, newdata, .se_fit = FALSE)
+  
+  if (is.null(newdata)) {
+    tryCatch({
+      # no influence measures available, only residuals
+      df$.resid <- residuals(x)
+    }, error = data_error)
+  }
+  
+  df
 }
 
 #' @templateVar class ivreg

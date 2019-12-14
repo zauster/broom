@@ -58,13 +58,6 @@ We encourage you to develop new tidiers using your favorite tidyverse tools. Pip
 
 If you are implementing a new tidier, we recommend taking a look at the internals of the tidying methods for `betareg` and `rq` objects and using those as a starting point.
 
-You should also be aware of the following helper functions:
-
-- `finish_glance()`
-- `augment_columns()`
-- `fix_data_frame()`
-- `validate_augment_input()`
-
 # Documenting new tidiers
 
 All new tidiers should be fully documented following the [tidyverse code documentation guidelines](http://style.tidyverse.org/). Documentation should use full sentences with appropriate punctation. Documentation should also contain at least one but potentially several examples of how the tidiers can be used.

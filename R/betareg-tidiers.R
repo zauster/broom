@@ -69,8 +69,18 @@ tidy.betareg <- function(x, conf.int = FALSE, conf.level = .95, ...) {
 #' 
 #' @seealso [augment()], [betareg::betareg()]
 #' @export
-augment.betareg <- function(x, data = model.frame(x), newdata = NULL,
-                            type.predict, type.residuals, ...) {
+augment.betareg <- function(
+  x, data = model.frame(x), newdata = NULL,
+  type.predict = c("response", "link", "precision", "variance", "quantile"),
+  type.residuals = c(
+    "sweighted2", "deviance", "pearson",
+    "response", "weighted", "sweighted"
+  ),
+  ...) {
+  
+  type.predict <- arg_match(type.predict)
+  type.residuals <- arg_match(type.residuals)
+  
   augment_columns(
     x, data, newdata,
     type.predict = type.predict,
